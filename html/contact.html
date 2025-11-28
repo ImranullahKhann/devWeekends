@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
+    <title>Contact Me</title>
 </head>
 <body style="font-size: 1.3rem;">
     <hr>
@@ -20,14 +20,27 @@
     </header>
     <hr>
 
-    <h1>Hey! I am Imranullah, and I am passionate about software and tech</h1> 
-    <a href="https://www.linkedin.com/in/imranullahkhann/" target="_main"><img height="200px" src="./assets/pfp-generic.png" alt="pfp"></a><br>
-    <i>Click on Profile Picture to go to LinkedIn Profile</i>
+    <h1>Contact Me</h1>
     <hr>
     
-    <p>I understand the importance of accountability and speed in today's competetive world so I put an effort into keeping myself sharp, open to learning and consistently put myself out of my comfort zone, so I can build competence.</p>
-    <!--
-    This is a comment
-    -->
+    <form accept="backend.php">
+        <label for="email">Email address</label>
+        <br>
+        <input type="email" id="email" required>
+        <br>
+
+        <label for="subject">Subject</label>
+        <br>
+        <input type="text" id="subject" required>
+        <br>
+
+        <label for="body">Body</label>
+        <br>
+        <textarea name="body" id="body" rows="5" cols="30"></textarea>
+        <br>
+
+        <button type="submit">Send</button>
+        <br><span>spoiler: it won't work :)</span>
+    </form>
 </body>
 </html>
