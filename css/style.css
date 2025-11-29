@@ -273,7 +273,7 @@ html {
 
 @keyframes cloudMovement {
     from {
-        transform: translate(-200rem, 0rem);
+        transform: translate(-220rem, 0rem);
     }
     to {
         transform: translate(200rem, 0rem)
