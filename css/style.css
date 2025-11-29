@@ -12,12 +12,82 @@ html {
     height: 100vh;
     width: 100vw;
     position: relative;
+    overflow: hidden;
 }
 
 .sky {
     background-color: rgb(80, 187, 206);
     height: 70%;
     position: relative;
+}
+
+.sun {
+    width: 100%;
+    height: 20rem;
+    position: relative;
+}
+
+.sun>div {
+    width: 15rem;
+    height: 15rem;
+    background-color: rgb(255, 255, 0);
+    filter: blur(1rem); 
+    border-radius: 50%;
+    position: absolute;
+    top: 2rem;
+    right: 10rem;
+}
+
+.clouds {
+    width: 100%;
+    height: 20rem;
+    display: flex;
+    justify-content: space-around;
+    /* background-color: pink; */
+}
+
+.cloud {
+    position: relative;
+    height: 90%;
+}
+
+.cloud:nth-child(2) {
+    align-self: end;
+}
+
+.cloud>div {
+    position: absolute;
+    background-color: white;
+    width: 10rem;
+    height: 10rem;
+    border-radius: 50%;
+}
+
+.cloud>div:nth-child(1) {
+    top: 30%;
+}
+
+.cloud>div:nth-child(2) {
+    left: 5rem;
+}
+
+.cloud>div:nth-child(3) {
+    left: 5rem;
+    bottom: 1rem;
+}
+
+.cloud>div:nth-child(4) {
+    left: 10rem;
+    bottom: 1rem;
+}
+
+.cloud>div:nth-child(5) {
+    left: 10rem;
+}
+
+.cloud>div:nth-child(6) {
+    top: 30%;
+    left: 15rem;
 }
 
 .land {
@@ -178,3 +248,4 @@ html {
     right: 1rem;
     transform: rotate(30deg);
 }
+
