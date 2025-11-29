@@ -60,7 +60,7 @@ html {
     position: relative;
     width: 100%;
     height: 100%;
-    background-color: rgb(189, 189, 218);
+    /* background-color: rgb(189, 189, 218); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,13 +76,105 @@ html {
     margin-left: 4rem;
     border-top-right-radius: 3rem;
     border-top-left-radius: 3rem;
+    z-index: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .bott {
     border-top-right-radius: 3rem;
     border-top-left-radius: 2.3rem;
+    border-bottom-left-radius: 1rem;
+    border-bottom-right-radius: 1rem;
     background-color: rgb(151, 54, 54);
     width: 90%;
     height: 54%;
     flex-shrink: 0;
+    z-index: 1;
+}
+
+.tire-1, .tire-2 {
+    position: absolute;
+    height: 10rem;
+    width: 10rem;
+    background-color: black;
+    border-radius: 50%;
+    bottom: 0rem;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.tire-1 {
+    left: 5rem;
+}
+
+.tire-2 {
+    right: 4rem;
+}
+
+.back-bump, .front-bump {
+    position: absolute;
+    height: 3rem;
+    width: 4rem;
+    background-color: rgb(70, 69, 69);
+    bottom: 3rem;
+}
+
+.back-bump {
+    left: 0px;
+    border-top-left-radius: 1rem;
+    border-bottom-left-radius: 1rem;
+}
+
+.front-bump {
+    right: 0rem;
+    border-top-right-radius: 1rem;
+    border-bottom-right-radius: 1rem;
+}
+
+.torch {
+    position: absolute;
+    z-index: 2;
+    background-color: rgb(243, 243, 91);
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    right: 3rem;
+    bottom: 12rem;
+}
+
+.windows {
+    border-top-right-radius: 1rem;
+    border-top-left-radius: 1rem;
+    background-color: rgb(115, 162, 233);
+    width: 15rem;
+    height: 8rem;
+}
+
+.windows>div {
+    width: 50%;
+    height: 100%;
+    border-right: 3px solid black;
+}
+
+.cap {
+    background-color: silver;
+    width: 50%;
+    height: 50%;
+    border-radius: 50%;
+    position: relative;
+}
+
+.shine {
+    position: absolute;
+    background-color: white;
+    width: 2rem;
+    height: 1rem;
+    border-radius: 30%;
+    top: 1rem;
+    right: 1rem;
+    transform: rotate(30deg);
 }
