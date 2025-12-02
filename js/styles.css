@@ -1,0 +1,76 @@
+/* Reset */
+html {
+    font-size: 10px;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0px;
+    margin: 0px;
+    font-size: 1.6rem;
+}
+
+h1 {
+    font-size: 4rem;
+}
+
+h2 {
+    font-size: 3.5rem;
+}
+
+h3 {
+    font-size: 3rem;
+}
+
+h4 {
+    font-size: 2.5rem
+}
+
+h5 {
+    font-size: 2rem;
+}
+
+h6 {
+    font-size: 1.8rem;
+}
+
+/* CSS */
+body {
+    background-color: rgb(65, 60, 60);
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+header {
+    background-image: linear-gradient(to bottom, rgb(121, 53, 109), rgb(214, 142, 202));
+    /* background-color: rgb(159, 84, 230); */
+    padding: 1rem;
+    text-align: center;
+}
+
+main {
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.board {
+    width: 120rem;
+    display: flex;
+    justify-content: space-around;
+}
+
+
+.column {
+    height: 50rem;
+    width: 30rem;
+    background-color:rgba(190, 188, 190, 0.26);
+    border-radius: 2rem;
+}
+
+.column>h2 {
+    background-color:rgba(189, 52, 166, 1);
+    text-align: center;
+    padding: 1rem 0rem;
+}
