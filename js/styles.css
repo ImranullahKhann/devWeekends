@@ -34,6 +34,10 @@ h6 {
     font-size: 1.8rem;
 }
 
+input:focus {
+  outline: none;
+}
+
 /* CSS */
 body {
     background-color: rgb(65, 60, 60);
@@ -59,12 +63,14 @@ main {
     width: 120rem;
     display: flex;
     justify-content: space-around;
+    gap: 2rem;
+    overflow-x: auto;
+    padding: 0rem 2rem;
 }
 
-
 .column {
-    height: 50rem;
-    width: 30rem;
+    min-height: 50rem;
+    min-width: 30rem;
     background-color:rgba(190, 188, 190, 0.26);
     border-radius: 2rem;
 }
@@ -73,4 +79,39 @@ main {
     background-color:rgba(189, 52, 166, 1);
     text-align: center;
     padding: 1rem 0rem;
+}
+
+#to-do {
+    position: relative;
+}
+
+.add-task {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+}
+
+.add-task>input {
+    width: 75%;
+    height: 3.5rem;
+    border-bottom-left-radius: 2rem;
+    border: 1px solid rgba(190, 188, 190, 0.26);
+    border-right: 1px solid white;
+    background-color:rgba(190, 188, 190, 0.26);
+    color: white;
+    padding-left: 2rem;
+}
+
+.add-task>input:focus {
+    border: 1px solid white;
+}
+
+.add-task>button {
+    height: 3.5rem;
+    width: 25%;
+    border-bottom-right-radius: 2rem;
+    border: none;
+    background-color:rgba(189, 52, 166, 1);
+    color: white;
 }
