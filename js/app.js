@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
     loadTasks();
+    // document.querySelector(".add-task>button").addEventListener("click", addTask)
 });
 
 let tasksData = [
@@ -24,7 +25,7 @@ let tasksData = [
     {
         "id": "4",
         "title": "Task 4",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
+        "desc": "",
         "category": "to-do" 
     },
     {
@@ -85,10 +86,6 @@ function loadTasks() {
 
         primary.append(interface)
 
-        const dragHandle = document.createElement("img")
-        dragHandle.src = "assets/drag.png"
-        dragHandleDiv.append(dragHandle)
-
         div.append(primary);
         div.append(dragHandleDiv);
 
@@ -102,15 +99,25 @@ function loadTasks() {
 }
 
 function dragstartHandler(ev) {
-  ev.dataTransfer.setData("text", ev.target.id);
+    ev.dataTransfer.setData("text", ev.target.id);
 }
 
 function dragoverHandler(ev) {
-  ev.preventDefault();
+    ev.preventDefault();
 }
 
 function dropHandler(ev) {
-  ev.preventDefault();
-  const data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+    ev.preventDefault();
+    const data = ev.dataTransfer.getData("text");
+    console.log(ev.target)
+    let target = ev.target;
+    while (!target.classList.contains("tasks")) {
+        target = target.parentNode;
+    }
+    tasksData = tasksData.map(item => {
+        if (item.id == data)
+            item.category = target.classList[1];
+        return item;
+    })
+    target.appendChild(document.getElementById(data));
 }

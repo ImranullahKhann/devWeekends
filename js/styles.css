@@ -137,6 +137,10 @@ main {
 
 .primary {
     width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 
 .interface {
@@ -162,18 +166,17 @@ main {
 }
 
 .drag-handle {
-    display: flex;
-    align-items: center;
-}
-
-.drag-handle>img {
     width: 4.5rem;
+    height: 4rem;
     transform: rotate(90deg);
     filter: invert(100);
     cursor: grab;
     transition: 0.5s ease;
+    background-image: url("assets/drag.png");
+    background-repeat: none;
+    background-size: cover;
 }
 
-.drag-handle>img:hover {
+.drag-handle:hover {
     transform: scale(1.1) rotate(90deg);
 }
