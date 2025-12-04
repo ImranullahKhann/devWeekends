@@ -128,12 +128,23 @@ main {
 
 .tasks>div {
     height: 14rem;
-    background-color: rgba(0, 255, 0, 0.253);
     padding: 1rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+}
+
+.to-do>div {
+    background-color: rgba(198, 255, 40, 0.25);
+}
+
+.in-progress>div {
+    background-color: rgba(19, 253, 39, 0.25);
+}
+
+.done>div {
+    background-color: rgba(129, 150, 130, 0.25);
 }
 
 .primary {
