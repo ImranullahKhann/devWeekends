@@ -13,24 +13,47 @@ let tasksData = [
         "id": "2",
         "title": "Task 2",
         "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "in-progress" 
+        "category": "done" 
     },
     {
         "id": "3",
         "title": "Task 3",
         "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "in-progress" 
+        "category": "to-do" 
     },
     {
         "id": "4",
         "title": "Task 4",
         "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "in-progress" 
+        "category": "to-do" 
     },
+    {
+        "id": "4",
+        "title": "Task 4",
+        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
+        "category": "to-do" 
+    },
+    {
+        "id": "4",
+        "title": "Task 4",
+        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
+        "category": "to-do" 
+    },
+    {
+        "id": "4",
+        "title": "Task 4",
+        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
+        "category": "to-do" 
+    },
+    {
+        "id": "4",
+        "title": "Task 4",
+        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
+        "category": "to-do" 
+    }
 ];
 
 function loadTasks() {
-    const tasks = document.querySelector(".tasks");
     for (let task of tasksData) {
         const div = document.createElement("div");
 
@@ -64,6 +87,12 @@ function loadTasks() {
 
         div.append(primary);
         div.append(dragHandleDiv);
-        tasks.prepend(div);
+
+        if (task.category == "to-do")
+            document.querySelector(".to-do").prepend(div);
+        else if (task.category == "in-progress")
+            document.querySelector(".in-progress").prepend(div);
+        else if (task.category == "done")
+            document.querySelector(".done").prepend(div);
     }
 }

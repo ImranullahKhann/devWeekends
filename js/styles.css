@@ -121,6 +121,10 @@ main {
     overflow: auto;
 }
 
+.to-do {
+    height: 40rem;
+}
+
 .tasks>div {
     height: 14rem;
     background-color: rgba(0, 255, 0, 0.253);
