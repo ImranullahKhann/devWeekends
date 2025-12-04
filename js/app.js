@@ -1,60 +1,23 @@
+window.onload = () => {
+    lS = localStorage.getItem("tasksData");
+    if (!lS) {
+        localStorage.setItem("tasksData", "[]");
+        localStorage.setItem("currId", "0");
+    }
+}
+
 document.addEventListener("DOMContentLoaded", () => {
     loadTasks();
-    // document.querySelector(".add-task>button").addEventListener("click", addTask)
+    document.querySelector(".add-task>button").addEventListener("click", (e) => {
+        e.preventDefault();
+        addTask();
+    })
 });
 
-let tasksData = [
-    {
-        "id": "1",
-        "title": "Task 1",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "in-progress" 
-    },
-    {
-        "id": "2",
-        "title": "Task 2",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "done" 
-    },
-    {
-        "id": "3",
-        "title": "Task 3",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "to-do" 
-    },
-    {
-        "id": "4",
-        "title": "Task 4",
-        "desc": "",
-        "category": "to-do" 
-    },
-    {
-        "id": "4",
-        "title": "Task 4",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "to-do" 
-    },
-    {
-        "id": "4",
-        "title": "Task 4",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "to-do" 
-    },
-    {
-        "id": "4",
-        "title": "Task 4",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "to-do" 
-    },
-    {
-        "id": "4",
-        "title": "Task 4",
-        "desc": "Code for devWeeLorem ipsum dolor sit amet consectetur adipisicin",
-        "category": "to-do" 
-    }
-];
 
+// tasksData
 function loadTasks() {
+    let tasksData = JSON.parse(localStorage.getItem("tasksData"));
     for (let task of tasksData) {
         const div = document.createElement("div");
         div.id = task.id;
@@ -81,6 +44,18 @@ function loadTasks() {
         editButton.innerText = "Edit"
         const deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete"
+
+        deleteButton.addEventListener("click", (e) => {
+            e.preventDefault();
+            tasksData = JSON.parse(localStorage.getItem("tasksData"));
+            tasksData = tasksData.map(data => {
+                if (data.id != task.id)
+                    return data;
+            })
+            localStorage.setItem("tasksData", JSON.stringify(tasksData));
+            refreshTasks();
+        })
+
         interface.append(editButton);
         interface.append(deleteButton);
 
@@ -107,9 +82,9 @@ function dragoverHandler(ev) {
 }
 
 function dropHandler(ev) {
+    let tasksData = JSON.parse(localStorage.getItem("tasksData"));
     ev.preventDefault();
     const data = ev.dataTransfer.getData("text");
-    console.log(ev.target)
     let target = ev.target;
     while (!target.classList.contains("tasks")) {
         target = target.parentNode;
@@ -119,5 +94,38 @@ function dropHandler(ev) {
             item.category = target.classList[1];
         return item;
     })
+    localStorage.setItem("tasksData", JSON.stringify(tasksData));
     target.appendChild(document.getElementById(data));
+}
+
+function addTask () {
+    let currId = localStorage.getItem("currId");
+    let tasksData = JSON.parse(localStorage.getItem("tasksData"));
+    const title = document.querySelector(".add-task>input").value;
+
+    if (title.trim().length < 1)
+        return
+
+    document.querySelector(".add-task>input").value = ""
+
+    const newEntry = {
+        id: currId,
+        title: title,
+        desc: "",
+        category: "to-do"
+    }
+
+    currId = String(+currId + 1);
+    localStorage.setItem("currId", currId);
+
+    tasksData.push(newEntry);
+    localStorage.setItem("tasksData", JSON.stringify(tasksData));
+    refreshTasks();
+}
+
+function refreshTasks () {
+    let columns = document.querySelectorAll(".tasks");
+    for (column of columns)
+        column.innerHTML = ""
+    loadTasks();
 }

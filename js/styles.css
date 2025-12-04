@@ -114,6 +114,7 @@ main {
     border: none;
     background-color:rgba(189, 52, 166, 1);
     color: white;
+    cursor: pointer;
 }
 
 .tasks {
