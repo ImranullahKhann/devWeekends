@@ -48,10 +48,7 @@ function loadTasks() {
         deleteButton.addEventListener("click", (e) => {
             e.preventDefault();
             tasksData = JSON.parse(localStorage.getItem("tasksData"));
-            tasksData = tasksData.map(data => {
-                if (data.id != task.id)
-                    return data;
-            })
+            tasksData = tasksData.filter(data => data.id != task.id);
             localStorage.setItem("tasksData", JSON.stringify(tasksData));
             refreshTasks();
         })
