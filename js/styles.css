@@ -60,7 +60,7 @@ main {
 }
 
 .board {
-    width: 120rem;
+    width: 140rem;
     display: flex;
     justify-content: space-around;
     gap: 2rem;
@@ -69,8 +69,9 @@ main {
 }
 
 .column {
+    flex-shrink: 0;
     min-height: 50rem;
-    min-width: 32rem;
+    width: 40rem;
     background-color:rgba(190, 188, 190, 0.26);
     border-radius: 2rem;
 }
