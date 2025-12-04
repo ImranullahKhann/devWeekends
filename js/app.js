@@ -40,8 +40,10 @@ function loadTasks() {
 
         const interface = document.createElement("div");
         interface.className = "interface";
-        const editButton = document.createElement("button");
-        editButton.innerText = "Edit"
+        // const editButton = document.createElement("button");
+        // editButton.innerText = "Edit"
+
+        
         const deleteButton = document.createElement("button");
         deleteButton.innerText = "Delete"
 
@@ -53,7 +55,7 @@ function loadTasks() {
             refreshTasks();
         })
 
-        interface.append(editButton);
+        // interface.append(editButton);
         interface.append(deleteButton);
 
         primary.append(interface)
@@ -92,7 +94,7 @@ function dropHandler(ev) {
         return item;
     })
     localStorage.setItem("tasksData", JSON.stringify(tasksData));
-    target.appendChild(document.getElementById(data));
+    target.prepend(document.getElementById(data));
 }
 
 function addTask () {

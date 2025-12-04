@@ -155,6 +155,10 @@ main {
     justify-content: space-between;
 }
 
+.primary>h5 {
+    word-wrap: break-word;
+}
+
 .interface {
     margin-top: 1rem;
     display: flex;
