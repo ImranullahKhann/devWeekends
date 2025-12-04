@@ -56,6 +56,10 @@ let tasksData = [
 function loadTasks() {
     for (let task of tasksData) {
         const div = document.createElement("div");
+        div.id = task.id;
+        div.draggable = "true";
+        div.ondragstart = (event) => {dragstartHandler(event)};
+
 
         const primary = document.createElement("div");
         primary.className = "primary";
@@ -95,4 +99,18 @@ function loadTasks() {
         else if (task.category == "done")
             document.querySelector(".done").prepend(div);
     }
+}
+
+function dragstartHandler(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function dragoverHandler(ev) {
+  ev.preventDefault();
+}
+
+function dropHandler(ev) {
+  ev.preventDefault();
+  const data = ev.dataTransfer.getData("text");
+  ev.target.appendChild(document.getElementById(data));
 }
