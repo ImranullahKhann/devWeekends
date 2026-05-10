@@ -125,7 +125,7 @@ export const verifyEmail = async (req, res) => {
         const {userId, otp} = req.body;
 
         if (!userId || !otp) {
-            return res.json({success: false, message: 'Miessing Details'});
+            return res.json({success: false, message: 'Missing Details'});
         }
 
         const user = await userModel.findById(userId);

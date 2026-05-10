@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import { assets } from '../assets/assets';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { AppContext } from '../context/AppContext';
 import { toast } from 'react-toastify';
 import axios from 'axios';
@@ -8,6 +8,7 @@ import axios from 'axios';
 const Navbar = () => {
     const navigate = useNavigate()
     const { userData, backendUrl, setUserData, setAuth } = useContext(AppContext)
+    const [isLoader, setIsLoader] = useState(false)
 
     const logout = async () => {
         try {
@@ -17,6 +18,25 @@ const Navbar = () => {
             navigate('/')
         } catch (e) {
             toast.error(e.message)
+        }
+    }
+
+    const sendVerificationOtp = async () => {
+        try {
+            if (isLoader) return;
+            setIsLoader(true)
+            const {data} = await axios.post(backendUrl + '/api/auth/send-otp', {email: userData.email})
+            
+            if (data.success) {
+                navigate('/email-verify')
+                toast.success(data.message)
+            } else {
+                toast.error(data.message)
+            }
+        } catch (e) {
+            toast.error(e.message)
+        } finally {
+            setIsLoader(false)
         }
     }
 
@@ -30,7 +50,7 @@ const Navbar = () => {
                 <div className='absolute hidden group-hover:block top-0 right-0 z-10 text-black rounded pt-10'>
                     <ul className='list-none m-0 p-2 bg-gray-100 text-sm'>
                         { !userData.isAccountVerified &&
-                        <li className='py-1 px-2 hover:bg-gray-200 cursor-pointer'>Verify Email</li> }
+                        <li className={`py-1 px-2 ${isLoader ? 'is-loading' : 'hover:bg-gray-200 cursor-pointer'}`} onClick={sendVerificationOtp}>Verify Email</li> }
                         <li className='py-1 px-2 hover:bg-gray-200 cursor-pointer pr-10' onClick={logout}>Logout</li>
                     </ul>
                 </div>
