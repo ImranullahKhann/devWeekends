@@ -3,6 +3,12 @@ import jwt from "jsonwebtoken";
 import userModel from "../models/userModel.js";
 import transporter from "../config/nodemailer.js";
 
+const cookieConfig = {
+    httpOnly: true,
+    secure: process.env.NODE_ENV === 'prod' ? true : false,
+    maxAge: 7 * 24 * 60 * 60 * 1000
+}
+
 export const register = async (req, res) => {
     try { 
         const {name, email, password} = req.body;
@@ -24,12 +30,7 @@ export const register = async (req, res) => {
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'prod' ? true : false,
-            sameSite: process.env.NODE_ENV === 'prod' ? 'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000
-        });
+        res.cookie('token', token, cookieConfig);
 
         // Sending welcome email
         const mailOptions = {
@@ -69,12 +70,7 @@ export const login = async (req, res) => {
 
         const token = jwt.sign({id: user._id}, process.env.JWT_SECRET, { expiresIn: '7d' });
 
-        res.cookie('token', token, {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'prod' ? true : false,
-            sameSite: process.env.NODE_ENV === 'prod' ? 'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000
-        });
+        res.cookie('token', token, cookieConfig);
 
         return res.json({ success: true})
     } catch (error) {
@@ -85,12 +81,7 @@ export const login = async (req, res) => {
 
 export const logout = async (req, res) => {
     try {
-        res.clearCookie('token', {
-            httpOnly: true,
-            secure: process.env.NODE_ENV === 'prod' ? true : false,
-            sameSite: process.env.NODE_ENV === 'prod' ? 'none' : 'strict',
-            maxAge: 7 * 24 * 60 * 60 * 1000
-        });
+        res.clearCookie('token', cookieConfig);
         
         return res.json({ success: true, message: "Logged out"});
     } catch(error) {
